@@ -23,10 +23,10 @@ const ToursPage = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Intro Section */}
         <div className="text-center mb-16">
-          <h1 className="font-serif text-4xl md:text-6xl font-bold text-text-primary mb-6">
+          <h1 className="font-serif text-3xl md:text-4xl font-bold text-text-primary mb-6">
             Sample Journeys
           </h1>
-          <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Every journey I create is unique and fine-tuned to your interests. These itineraries are starting points
             to spark your imagination. Let's create your perfect trip together.
           </p>
@@ -50,10 +50,10 @@ const ToursPage = () => {
                   />
                 </div>
                 <div className="p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary mb-3">
+                  <h2 className="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-3">
                     {tour.title}
                   </h2>
-                  <p className="text-xl text-text-secondary mb-6">{tour.tagline}</p>
+                  <p className="text-base text-text-secondary mb-6">{tour.tagline}</p>
 
                   {/* Key Details */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
@@ -84,7 +84,7 @@ const ToursPage = () => {
 
               {/* Itinerary */}
               <div className="p-8 md:p-12 border-t border-secondary">
-                <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-8">
+                <h3 className="font-serif text-xl md:text-2xl font-bold text-text-primary mb-8">
                   Itinerary
                 </h3>
                 <div className="space-y-6">

@@ -17,17 +17,17 @@ const TourCard = ({ tour }: TourCardProps) => {
         />
       </div>
       <div className="p-6">
-        <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-2">
+        <h3 className="font-serif text-xl md:text-2xl font-bold text-text-primary mb-2">
           {tour.title}
         </h3>
-        <p className="text-text-secondary mb-4">{tour.tagline}</p>
-        <div className="flex justify-between items-center text-sm text-text-secondary mb-4">
+        <p className="text-sm text-text-secondary mb-4">{tour.tagline}</p>
+        <div className="flex justify-between items-center text-xs text-text-secondary mb-4">
           <span>{tour.duration}</span>
           <span className="font-semibold text-accent">{tour.price}</span>
         </div>
         <Link
           to={`/tours#${tour.id}`}
-          className="text-accent hover:text-accent-hover font-medium transition-colors duration-200"
+          className="text-sm text-accent hover:text-accent-hover font-medium transition-colors duration-200"
         >
           View Details →
         </Link>

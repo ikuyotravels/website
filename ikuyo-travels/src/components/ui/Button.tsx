@@ -17,10 +17,10 @@ const Button = ({
   className = '',
   type = 'button'
 }: ButtonProps) => {
-  const baseStyles = 'px-8 py-3 rounded-lg font-medium transition-all duration-200 inline-block text-center';
+  const baseStyles = 'px-6 py-2.5 text-sm rounded-lg font-medium transition-all duration-200 inline-block text-center';
   const variantStyles = variant === 'primary'
     ? 'bg-accent text-white hover:bg-accent-hover shadow-md hover:shadow-lg'
-    : 'bg-secondary text-text-primary hover:bg-opacity-80 border border-text-secondary';
+    : 'bg-white text-text-primary hover:bg-opacity-80 border border-text-secondary';
 
   const combinedStyles = `${baseStyles} ${variantStyles} ${className}`;
 
