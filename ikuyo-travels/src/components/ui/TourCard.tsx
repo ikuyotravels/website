@@ -1,39 +1,34 @@
-import { Link } from 'react-router-dom';
-import type { Tour } from '../../data/tourData';
-import { getImageUrl } from '../../data/imageUrls';
+import { Tour } from "@/data/tourData";
+import { Button } from "./Button";
+import { Link } from "react-router-dom";
 
 interface TourCardProps {
   tour: Tour;
 }
 
-const TourCard = ({ tour }: TourCardProps) => {
+export const TourCard = ({ tour }: TourCardProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-      <div className="aspect-[4/3] bg-secondary overflow-hidden">
+    <div className="group bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-smooth">
+      <div className="aspect-[4/3] overflow-hidden">
         <img
-          src={getImageUrl(tour.id)}
+          src={`https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&h=600&fit=crop&q=80`}
           alt={tour.title}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
         />
       </div>
       <div className="p-6">
-        <h3 className="font-serif text-xl md:text-2xl font-bold text-text-primary mb-2">
-          {tour.title}
-        </h3>
-        <p className="text-sm text-text-secondary mb-4">{tour.tagline}</p>
-        <div className="flex justify-between items-center text-xs text-text-secondary mb-4">
-          <span>{tour.duration}</span>
-          <span className="font-semibold text-accent">{tour.price}</span>
+        <h3 className="text-2xl font-serif font-bold mb-2">{tour.title}</h3>
+        <p className="text-muted-foreground mb-4">{tour.tagline}</p>
+        <div className="flex items-center justify-between mb-4 text-sm">
+          <span className="text-muted-foreground">{tour.duration}</span>
+          <span className="text-accent font-semibold">{tour.price}</span>
         </div>
-        <Link
-          to={`/tours#${tour.id}`}
-          className="text-sm text-accent hover:text-accent-hover font-medium transition-colors duration-200"
-        >
-          View Details →
+        <Link to="/tours">
+          <Button variant="outline" className="w-full">
+            View Details
+          </Button>
         </Link>
       </div>
     </div>
   );
 };
-
-export default TourCard;

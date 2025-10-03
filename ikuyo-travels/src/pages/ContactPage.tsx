@@ -1,116 +1,143 @@
-import { useState } from 'react';
-import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
+import { useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { Mail, MessageSquare, Send } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactPage = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    travelDates: '',
-    groupSize: '',
-    interests: '',
-    message: ''
+    name: "",
+    email: "",
+    groupSize: "",
+    travelDates: "",
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your inquiry! I will get back to you within 24 hours.');
+    
+    // In a real application, this would send the data to a backend
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for your inquiry. I'll get back to you within 24 hours.",
+    });
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      groupSize: "",
+      travelDates: "",
+      message: "",
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="font-serif text-4xl md:text-6xl font-bold text-text-primary mb-6">
-            Let's Design Your Dream Trip
-          </h1>
-          <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Tell me about your Japan travel dreams, and I'll create a personalized itinerary just for you
-          </p>
-        </div>
+    <div className="min-h-screen py-20">
+      <div className="container-editorial">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6">
+              Let's Create Your Perfect Journey
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              Share your travel dreams with me, and I'll craft a personalized itinerary that brings them to life.
+            </p>
+          </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-8">
-                Send Me an Inquiry
-              </h2>
+          <div className="grid md:grid-cols-5 gap-12">
+            {/* Contact Info Sidebar */}
+            <div className="md:col-span-2 space-y-6">
+              <div>
+                <h2 className="text-2xl font-serif mb-6">Get in Touch</h2>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Mail className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Email</p>
+                      <a
+                        href="mailto:info@ikuyotravels.com"
+                        className="text-muted-foreground hover:text-accent transition-smooth"
+                      >
+                        info@ikuyotravels.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <MessageSquare className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">WhatsApp</p>
+                      <p className="text-muted-foreground">Available upon request</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-muted/30 p-6 rounded-lg">
+                <h3 className="font-semibold mb-3">What to Include</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Your travel dates or preferred season</li>
+                  <li>• Number of travelers in your group</li>
+                  <li>• Must-see destinations or experiences</li>
+                  <li>• Any special requirements or preferences</li>
+                  <li>• Your budget range (if you're comfortable sharing)</li>
+                </ul>
+              </div>
+
+              <div className="bg-accent/10 p-6 rounded-lg">
+                <p className="text-sm text-foreground">
+                  <strong>Response Time:</strong> I typically respond within 24 hours. For urgent inquiries, please mention it in your message.
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="md:col-span-3">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
-                      Your Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors"
-                    />
-                  </div>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-accent transition-smooth"
+                    placeholder="Enter your full name"
+                  />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="travelDates" className="block text-sm font-semibold text-text-primary mb-2">
-                      Preferred Travel Dates
-                    </label>
-                    <input
-                      type="text"
-                      id="travelDates"
-                      name="travelDates"
-                      placeholder="e.g., April 2024"
-                      value={formData.travelDates}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors"
-                    />
-                  </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-accent transition-smooth"
+                    placeholder="your@email.com"
+                  />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="groupSize" className="block text-sm font-semibold text-text-primary mb-2">
+                    <label htmlFor="groupSize" className="block text-sm font-medium mb-2">
                       Group Size *
                     </label>
                     <select
@@ -119,7 +146,7 @@ const ContactPage = () => {
                       required
                       value={formData.groupSize}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors"
+                      className="w-full px-4 py-3 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-accent transition-smooth"
                     >
                       <option value="">Select group size</option>
                       <option value="2-3">2-3 people</option>
@@ -128,97 +155,48 @@ const ContactPage = () => {
                       <option value="10+">10+ people</option>
                     </select>
                   </div>
+
                   <div>
-                    <label htmlFor="interests" className="block text-sm font-semibold text-text-primary mb-2">
-                      Main Interests
+                    <label htmlFor="travelDates" className="block text-sm font-medium mb-2">
+                      Travel Dates
                     </label>
                     <input
                       type="text"
-                      id="interests"
-                      name="interests"
-                      placeholder="e.g., Culture, Nature, Food"
-                      value={formData.interests}
+                      id="travelDates"
+                      name="travelDates"
+                      value={formData.travelDates}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors"
+                      className="w-full px-4 py-3 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-accent transition-smooth"
+                      placeholder="e.g., April 2024"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-text-primary mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">
                     Tell Me About Your Dream Trip *
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     required
-                    rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="What would you like to experience in Japan? Any specific places you want to visit? Special requirements or preferences?"
-                    className="w-full px-4 py-3 rounded-lg border border-secondary focus:outline-none focus:border-accent transition-colors resize-none"
+                    rows={6}
+                    className="w-full px-4 py-3 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-accent transition-smooth resize-none"
+                    placeholder="Share your interests, must-see places, travel style, or any questions you have..."
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full md:w-auto px-12 py-4 bg-accent text-white rounded-lg font-semibold hover:bg-accent-hover transition-colors duration-200 shadow-md hover:shadow-lg"
-                >
-                  Send Inquiry
-                </button>
-              </form>
-            </div>
-          </div>
+                <Button type="submit" size="lg" className="w-full">
+                  <Send className="w-5 h-5 mr-2" />
+                  Send Your Inquiry
+                </Button>
 
-          {/* Contact Info Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-lg p-8 sticky top-24">
-              <h3 className="font-serif text-2xl font-bold text-text-primary mb-6">
-                Get in Touch
-              </h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent bg-opacity-10 flex items-center justify-center flex-shrink-0">
-                    <HiMail className="text-accent text-xl" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary mb-1">Email</p>
-                    <a href="mailto:info@ikuyotravels.com" className="text-text-secondary hover:text-accent transition-colors">
-                      info@ikuyotravels.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent bg-opacity-10 flex items-center justify-center flex-shrink-0">
-                    <HiPhone className="text-accent text-xl" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary mb-1">Phone</p>
-                    <a href="tel:+81123456789" className="text-text-secondary hover:text-accent transition-colors">
-                      +81 (0) 123-456-789
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent bg-opacity-10 flex items-center justify-center flex-shrink-0">
-                    <HiLocationMarker className="text-accent text-xl" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary mb-1">Based in</p>
-                    <p className="text-text-secondary">Tokyo, Japan</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-secondary">
-                <h4 className="font-semibold text-text-primary mb-3">Response Time</h4>
-                <p className="text-text-secondary text-sm">
-                  I typically respond to inquiries within 24 hours. I look forward to helping you plan your perfect Japan adventure!
+                <p className="text-sm text-muted-foreground text-center">
+                  By submitting this form, you agree to be contacted about your travel inquiry.
                 </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>

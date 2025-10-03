@@ -1,136 +1,131 @@
-import { HiGlobeAlt, HiAcademicCap, HiUserGroup, HiShieldCheck } from 'react-icons/hi';
+import { Button } from "@/components/ui/Button";
+import { Link } from "react-router-dom";
+import { Globe, Languages, Award, Heart } from "lucide-react";
+import guideImage from "@/assets/guide-portrait.jpg";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Intro Section */}
+    <div className="min-h-screen py-20">
+      <div className="container-editorial">
+        {/* Hero Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-          <div className="order-2 md:order-1">
-            <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=800&fit=crop&q=80"
-                alt="Your Guide"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div>
+            <img
+              src={guideImage}
+              alt="Your guide"
+              className="w-full rounded-lg shadow-lg"
+            />
           </div>
-          <div className="order-1 md:order-2">
-            <h1 className="font-serif text-4xl md:text-6xl font-bold text-text-primary mb-6">
-              Your Guide, [Friend's Name]
+          <div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6">
+              Your Guide
             </h1>
-            <p className="text-lg text-text-secondary leading-relaxed">
-              Welcome! I'm passionate about sharing the beauty, culture, and hidden treasures of Japan with travelers
-              from around the world. With over a decade of experience, I've perfected the art of creating journeys
-              that feel both extraordinary and effortlessly personal.
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              Welcome! I'm passionate about sharing the real Japan—the places that make you feel like you've discovered something special, the moments that become your favorite travel memories.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              With over a decade of experience guiding travelers through Japan, I've learned that the best trips aren't just about checking off landmarks. They're about the spontaneous detours, the hidden viewpoints, and the authentic connections.
             </p>
           </div>
         </div>
 
-        {/* My Philosophy Section */}
-        <section className="bg-white rounded-lg shadow-lg p-8 md:p-12 mb-20">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary mb-6">
+        {/* Philosophy Section */}
+        <section className="mb-20 bg-card p-8 md:p-12 rounded-lg">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">
             My Approach to Travel
           </h2>
-          <div className="prose prose-lg max-w-none text-text-secondary">
-            <p className="mb-4 leading-relaxed">
-              I believe the best travel is personal and flexible. My passion is sharing the authentic, non-touristy
-              side of Japan. While we'll see the famous sights, the real magic happens when we make a spontaneous
-              stop at a local restaurant or find a perfect photo spot away from the crowds.
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              I believe the best travel is personal and flexible. My passion is sharing the authentic, non-touristy side of Japan while ensuring you experience the iconic sights that brought you here in the first place.
             </p>
-            <p className="mb-4 leading-relaxed">
-              Whether you're traveling with family, friends, or as a couple, I tailor each journey to your pace and
-              interests. Need to slow down? Want to venture off the beaten path? Curious about a local tradition?
-              I'm here to make it happen.
+            <p>
+              While we'll definitely see famous landmarks like Mount Fuji and historic temples, the real magic happens in the in-between moments. That spontaneous stop at a local restaurant where they serve the best ramen in the region. The winding mountain road with a perfect photo spot that tourists don't know about. The flexibility to adjust our pace when the kids need a break or when you discover something you want to explore more deeply.
             </p>
-            <p className="leading-relaxed">
-              I handle all the logistics so you can relax and immerse yourself in the experience. From navigating
-              public transport to recommending the best seasonal dishes, I'm your local connection to authentic Japan.
+            <p>
+              I handle all the logistics—navigation, reservations, local knowledge—so you can relax and immerse yourself in the experience. My specialty is creating multi-checkpoint itineraries that are efficient yet never feel rushed, using my own vehicle to avoid crowds and reach places public transportation can't.
+            </p>
+            <p>
+              Most of my clients are families and groups of 4 or more who want that perfect blend of structure and spontaneity. Whether it's cherry blossom season in spring, autumn foliage viewing, or winter snow festivals, I know the best times, places, and hidden angles to make your trip unforgettable.
             </p>
           </div>
         </section>
 
-        {/* Qualifications Section */}
-        <section>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary mb-12 text-center">
-            Experience & Qualifications
+        {/* Qualifications Grid */}
+        <section className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
+            What Makes Me Different
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white rounded-lg shadow-md p-8 text-center transition-shadow duration-300 hover:shadow-xl">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent bg-opacity-10 mb-6">
-                <HiGlobeAlt className="text-accent text-3xl" />
+            <div className="text-center">
+              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Languages className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="font-bold text-lg text-text-primary mb-3">Languages</h3>
-              <p className="text-text-secondary">
+              <h3 className="font-semibold mb-2">Languages</h3>
+              <p className="text-sm text-muted-foreground">
                 English & Japanese (fluent)<br />
                 Chinese (conversational)
               </p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-8 text-center transition-shadow duration-300 hover:shadow-xl">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent bg-opacity-10 mb-6">
-                <HiAcademicCap className="text-accent text-3xl" />
+            <div className="text-center">
+              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="font-bold text-lg text-text-primary mb-3">Experience</h3>
-              <p className="text-text-secondary">
+              <h3 className="font-semibold mb-2">Experience</h3>
+              <p className="text-sm text-muted-foreground">
                 10+ Years<br />
                 Exploring Japan
               </p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-8 text-center transition-shadow duration-300 hover:shadow-xl">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent bg-opacity-10 mb-6">
-                <HiUserGroup className="text-accent text-3xl" />
+            <div className="text-center">
+              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Heart className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="font-bold text-lg text-text-primary mb-3">Specialization</h3>
-              <p className="text-text-secondary">
+              <h3 className="font-semibold mb-2">Specialization</h3>
+              <p className="text-sm text-muted-foreground">
                 Families & Groups<br />
-                4+ people
+                4 or more travelers
               </p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-8 text-center transition-shadow duration-300 hover:shadow-xl">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent bg-opacity-10 mb-6">
-                <HiShieldCheck className="text-accent text-3xl" />
+            <div className="text-center">
+              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="font-bold text-lg text-text-primary mb-3">Licensed & Insured</h3>
-              <p className="text-text-secondary">
-                Tour Operator<br />
-                License #XXXXXX
+              <h3 className="font-semibold mb-2">Licensed</h3>
+              <p className="text-sm text-muted-foreground">
+                Fully Licensed & Insured<br />
+                Professional Tour Operator
               </p>
             </div>
           </div>
         </section>
 
-        {/* Values Section */}
-        <section className="mt-20 bg-accent bg-opacity-10 rounded-lg p-8 md:p-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary mb-8 text-center">
-            What Sets Me Apart
+        {/* Mission Statement */}
+        <section className="mb-20 bg-muted/30 p-8 md:p-12 rounded-lg text-center">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">
+            My Mission
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-bold text-xl text-text-primary mb-3">Deep Local Knowledge</h3>
-              <p className="text-text-secondary">
-                Years of exploration mean I know the best hidden spots, seasonal highlights, and local favorites
-                that guidebooks miss.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-xl text-text-primary mb-3">Genuine Flexibility</h3>
-              <p className="text-text-secondary">
-                Your journey adapts to you. Whether it's adjusting for weather, energy levels, or spontaneous
-                discoveries, I make it work.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-xl text-text-primary mb-3">Cultural Bridge</h3>
-              <p className="text-text-secondary">
-                I translate more than language—I help you understand customs, etiquette, and the stories behind
-                what you're experiencing.
-              </p>
-            </div>
-          </div>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            To provide friendly, reliable, bespoke private tours in Japan that offer unique experiences unknown to most tourists. I started this business out of my own passion for traveling and exploring Japan, and a love for sharing all the amazing facets of this country with others.
+          </p>
         </section>
+
+        {/* CTA */}
+        <div className="text-center bg-accent text-accent-foreground p-12 rounded-lg">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">
+            Let's Plan Your Perfect Journey
+          </h2>
+          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+            Ready to experience Japan in a way that feels uniquely yours? Let's talk about your dream trip.
+          </p>
+          <Link to="/contact">
+            <Button size="lg" variant="outline" className="border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent">
+              Start Planning Today
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
