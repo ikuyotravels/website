@@ -17,7 +17,7 @@ const HomePage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://source.unsplash.com/1920x1080/?japan,mount-fuji,cherry-blossom')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1920&h=1080&fit=crop')",
           }}
         >
           <div className="absolute inset-0 bg-text-primary bg-opacity-40"></div>
@@ -111,7 +111,7 @@ const HomePage = () => {
             <div className="order-2 md:order-1">
               <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
                 <img
-                  src="https://source.unsplash.com/600x800/?japan,guide,person"
+                  src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=800&fit=crop"
                   alt="Your guide"
                   className="w-full h-full object-cover"
                 />

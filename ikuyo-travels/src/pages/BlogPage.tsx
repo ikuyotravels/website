@@ -64,7 +64,7 @@ const BlogPage = () => {
           <div className="grid md:grid-cols-2 gap-0">
             <div className="aspect-[4/3] md:aspect-auto">
               <img
-                src="https://source.unsplash.com/800x600/?japan,mount-fuji"
+                src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&h=600&fit=crop&q=80"
                 alt="Featured post"
                 className="w-full h-full object-cover"
               />

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Tour } from '../../data/tourData';
+import { getImageUrl } from '../../data/imageUrls';
 
 interface TourCardProps {
   tour: Tour;
@@ -10,7 +11,7 @@ const TourCard = ({ tour }: TourCardProps) => {
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
       <div className="aspect-[4/3] bg-secondary overflow-hidden">
         <img
-          src={`https://source.unsplash.com/800x600/?japan,${tour.imageSeed}`}
+          src={getImageUrl(tour.id)}
           alt={tour.title}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />

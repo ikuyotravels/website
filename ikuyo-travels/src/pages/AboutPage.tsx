@@ -9,7 +9,7 @@ const AboutPage = () => {
           <div className="order-2 md:order-1">
             <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-xl">
               <img
-                src="https://source.unsplash.com/600x800/?japan,guide,professional"
+                src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=800&fit=crop&q=80"
                 alt="Your Guide"
                 className="w-full h-full object-cover"
               />

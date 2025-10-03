@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { tours } from '../data/tourData';
 import Button from '../components/ui/Button';
 import { HiClock, HiUserGroup, HiCurrencyDollar } from 'react-icons/hi';
+import { getImageUrl, getGalleryImages } from '../data/imageUrls';
 
 const ToursPage = () => {
   const location = useLocation();
@@ -43,7 +44,7 @@ const ToursPage = () => {
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="aspect-[4/3] md:aspect-auto">
                   <img
-                    src={`https://source.unsplash.com/800x600/?japan,${tour.imageSeed}`}
+                    src={getImageUrl(tour.id)}
                     alt={tour.title}
                     className="w-full h-full object-cover"
                   />
@@ -101,15 +102,15 @@ const ToursPage = () => {
                   ))}
                 </div>
 
-                {/* Photo Gallery Placeholder */}
+                {/* Photo Gallery */}
                 <div className="mt-10">
                   <h4 className="font-semibold text-lg text-text-primary mb-4">Photo Gallery</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {[1, 2, 3, 4].map((i) => (
+                    {getGalleryImages(tour.id).map((imageUrl, i) => (
                       <div key={i} className="aspect-square bg-secondary rounded-lg overflow-hidden">
                         <img
-                          src={`https://source.unsplash.com/400x400/?japan,${tour.imageSeed},${i}`}
-                          alt={`${tour.title} photo ${i}`}
+                          src={imageUrl}
+                          alt={`${tour.title} photo ${i + 1}`}
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>

@@ -13,7 +13,7 @@ const BlogPostPreview = ({ title, excerpt, date, imageSeed, slug }: BlogPostPrev
     <article className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
       <div className="aspect-[16/9] bg-secondary overflow-hidden">
         <img
-          src={`https://source.unsplash.com/800x450/?japan,${imageSeed}`}
+          src={`https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=450&fit=crop&q=80&sig=${slug}`}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />

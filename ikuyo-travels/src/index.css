@@ -3,12 +3,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #F4F1ED;
-  --color-text-primary: #2A3A3D;
-  --color-text-secondary: #6B7280;
-  --color-accent: #C46243;
-  --color-accent-hover: #A9543A;
-  --color-secondary: #9CA3AF;
+  --color-background: #FDF0D5;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
+  --color-accent: #780000;
+  --color-accent-hover: #5a0000;
+  --color-secondary: #E8D5C4;
 
   --font-family-sans: 'Figtree', sans-serif;
   --font-family-serif: 'Noto Serif JP', serif;

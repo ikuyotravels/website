@@ -58,7 +58,7 @@ const GuestStoriesPage = () => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <img
-                src="https://source.unsplash.com/800x600/?japan,family,travel"
+                src="https://images.unsplash.com/photo-1567270671170-fdc10a5bf831?w=800&h=600&fit=crop&q=80"
                 alt="Happy travelers"
                 className="rounded-lg shadow-lg w-full"
               />
