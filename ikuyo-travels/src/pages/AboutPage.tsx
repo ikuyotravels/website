@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
-import { Globe, Languages, Award, Heart } from "lucide-react";
+import { Globe, Languages, Award, Heart, Shield } from "lucide-react";
 import guideImage from "@/assets/guide-portrait.jpg";
 
 const AboutPage = () => {
@@ -112,16 +112,45 @@ const AboutPage = () => {
           </p>
         </section>
 
+        {/* Trust & Legitimacy */}
+        <section className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
+            Trust & Legitimacy
+          </h2>
+          <div className="max-w-2xl mx-auto space-y-6">
+            <div className="flex items-start gap-4 p-6 bg-card rounded-lg shadow-sm">
+              <Shield className="w-6 h-6 text-accent flex-shrink-0 mt-1" aria-hidden="true" />
+              <div>
+                <h3 className="font-semibold text-lg mb-2 text-foreground">Fully Licensed & Insured</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We operate under full insurance coverage and comply with all local regulations to ensure your safety and peace of mind throughout your journey.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-6 bg-card rounded-lg shadow-sm">
+              <Award className="w-6 h-6 text-accent flex-shrink-0 mt-1" aria-hidden="true" />
+              <div>
+                <h3 className="font-semibold text-lg mb-2 text-foreground">Official Japan Tourism Agency License</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  License #XXXXXX (placeholder – to be replaced with actual license number upon registration)
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
         {/* CTA */}
-        <div className="text-center bg-accent text-accent-foreground p-12 rounded-lg">
+        <div className="text-center bg-primary text-primary-foreground p-12 rounded-lg">
           <h2 className="text-3xl md:text-4xl font-serif mb-6">
             Let's Plan Your Perfect Journey
           </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-95 leading-relaxed">
             Ready to experience Japan in a way that feels uniquely yours? Let's talk about your dream trip.
           </p>
-          <Link to="/contact">
-            <Button size="lg" variant="outline" className="border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent">
+          <Link to="/contact" className="focus-ring inline-block">
+            <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 min-touch">
               Start Planning Today
             </Button>
           </Link>

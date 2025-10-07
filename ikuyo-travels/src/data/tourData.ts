@@ -8,38 +8,78 @@ export interface Tour {
   itinerary: { day: number; description: string }[];
   imageSeed: string;
   featured?: boolean;
+  tags?: string[];
+  seasonality?: string;
+  activityLevel?: string;
+  accessibility?: string;
+  whatsIncluded?: string[];
+  whatsNotIncluded?: string[];
+  yourDayYourWay?: string;
 }
 
 export const tours: Tour[] = [
   {
     id: "fuji-day-trip",
     title: "Day Trip to Fuji",
-    tagline: "Our timeless bestseller, great for any visitor",
+    tagline: "Experience Japan's iconic mountain with a local perspective",
     duration: "1 Day",
     groupSize: "2-9 pax",
-    price: "$120-$300/pax",
+    price: "From $300",
     featured: true,
     imageSeed: "fuji-mountain-cherry",
+    tags: ["First-timer", "Nature", "Family-friendly"],
+    seasonality: "Year-round (best Mar-May, Sep-Nov)",
+    activityLevel: "Easy to Moderate",
+    accessibility: "Mostly accessible with some walking",
+    yourDayYourWay: "This itinerary is a starting point. See a shop you want to explore? Want more time at a viewpoint? Tell me on the day—I'll flex the plan to your interests.",
+    whatsIncluded: [
+      "Private vehicle with driver",
+      "Expert guide for the full day",
+      "Admission to selected attractions",
+      "Bottled water"
+    ],
+    whatsNotIncluded: [
+      "Meals (I'll recommend great local spots)",
+      "Personal expenses",
+      "Optional shopping stops"
+    ],
     itinerary: [
       {
         day: 1,
-        description: "Set off from Tokyo, bound for Yamanashi. See Mt Fuji in all its glory from a grand vantage point, such as in front of the iconic Chureito Pagoda, or at a less crowded, more intimate location such as the Torii in the Sky. Feast on Yamanashi's own specialty regional cuisine, a hearty noodle stew 'houtou'. Take in the fall sights at the Five Lakes of Fuji, including the iconic view from Lake Motosu as featured in the back of Japan's ¥1,000 bill. Cap off the tour by checking out more of Fuji's hidden attractions, such as Shiraito Falls or Makaino Farm, before heading back to Tokyo at night. Optional stop at Gotemba Premium Outlets to get your shopping fix."
+        description: "We'll leave the bustle of Tokyo and head for Yamanashi. I'll take you to the classic Chureito Pagoda viewpoint—we'll time it right to skip the crowds. For lunch, I'll introduce you to my favorite houtou noodle spot that warms you right up. At the Five Lakes, I'll share the story behind the view on the ¥1,000 bill. Want to stop at Shiraito Falls or check out a local farm stand? Just let me know—it's your day."
       }
     ]
   },
   {
     id: "kansai",
     title: "The Heart of the Country: Kansai",
-    tagline: "An exciting blend of traditional and modern",
+    tagline: "Culture, temples, and hidden corners of Kyoto and Osaka",
     duration: "5 Days",
     groupSize: "4-9 pax",
-    price: "$800-$1400/pax",
+    price: "From $1,200",
     featured: true,
     imageSeed: "kyoto-temple",
+    tags: ["First-timer", "Food & Craft", "Culture"],
+    seasonality: "Year-round (especially beautiful in spring & fall)",
+    activityLevel: "Moderate",
+    accessibility: "Some temple stairs; alternatives available",
+    yourDayYourWay: "This itinerary is a starting point. If something catches your eye—an artisan shop, a scenic path, a café—we'll adjust on the spot. The day is yours.",
+    whatsIncluded: [
+      "5 days with expert guide",
+      "Private vehicle throughout",
+      "Admission to selected attractions",
+      "Local recommendations for dining"
+    ],
+    whatsNotIncluded: [
+      "Accommodation",
+      "Meals",
+      "Personal expenses",
+      "Optional activities"
+    ],
     itinerary: [
       {
         day: 1,
-        description: "Within Osaka, check out some of the city's highlights like Osaka Castle, Osaka Aquarium Kaiyukan, Abeno Harukas, or Sumiyoshi Shrine. Savour the fresh delights at Kuromon market, go shopping in Namba area, and take a picture with the famous Glico man at Dotonbori, and immerse in the dazzling lights and tasty cuisine of Osaka, 'the kitchen of Japan'."
+        description: "I'll meet you in Osaka and we'll explore the city's energy together. We can visit Osaka Castle or head straight to Kuromon Market where I'll introduce you to the best stall vendors. At Dotonbori, I'll help you get that perfect Glico Man photo without the crowds. Hungry? I know exactly where to find the city's best takoyaki and okonomiyaki—this is the kitchen of Japan, after all."
       },
       {
         day: 2,
@@ -93,16 +133,33 @@ export const tours: Tour[] = [
   {
     id: "hokkaido-winter",
     title: "Hokkaido Winter Wonderland",
-    tagline: "Snow, nighttime illumination, unique thrills and experiences",
+    tagline: "Snow festivals, hot springs, and magical winter landscapes",
     duration: "5 Days",
     groupSize: "4-9 pax",
-    price: "$1000-$1600/pax",
+    price: "From $1,350",
     featured: true,
     imageSeed: "hokkaido-snow",
+    tags: ["Winter", "Nature", "Family-friendly"],
+    seasonality: "December to March (best Jan-Feb)",
+    activityLevel: "Easy to Moderate",
+    accessibility: "Winter conditions; warm clothing required",
+    yourDayYourWay: "This itinerary is flexible. Want to spend more time soaking in hot springs? Prefer more time for photos in the snow? Just say the word—I'll make it happen.",
+    whatsIncluded: [
+      "5 days with expert guide",
+      "Private vehicle with winter tires",
+      "Admission to selected attractions",
+      "Hot spring resort recommendations"
+    ],
+    whatsNotIncluded: [
+      "Accommodation",
+      "Meals",
+      "Winter gear rental",
+      "Personal expenses"
+    ],
     itinerary: [
       {
         day: 1,
-        description: "In Sapporo, check out the city's famous landmarks like Tanukikoji shopping arcade, Odori Park, Nijo Market, and Hokkaido Shrine. See the world-famous Sapporo Snow Festival, and taste the local signature delicacies such as soup curry or Jingisukan, a kind of mutton-centric grilled meat. As evening falls, travel up to the summit of nearby Mt Moiwa by gondola and admire the spectacular night lights of the bustling city."
+        description: "I'll meet you in Sapporo and we'll dive right into winter magic. We'll explore Odori Park and the Snow Festival sculptures—I'll show you the best photo spots and share stories behind the ice art. For lunch, I'll take you to my go-to spot for Hokkaido's famous soup curry. As evening falls, we'll ride the gondola up Mt Moiwa for the city lights—one of Japan's best night views, and we'll have it without the tour bus crowds."
       },
       {
         day: 2,
