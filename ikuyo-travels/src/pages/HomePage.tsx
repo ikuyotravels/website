@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
-import { TourCard } from "@/components/ui/TourCard";
+import { TourCardGrid } from "@/components/tours/TourCardGrid";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
 import { tours } from "@/data/tourData";
 import { testimonials } from "@/data/testimonialData";
 import { Star, Clock, Users, MapPin, Heart, Sparkles } from "lucide-react";
-import heroImage from "@/assets/hero-fuji.jpg";
 import guideImage from "@/assets/guide-portrait.jpg";
 
 const HomePage = () => {
@@ -17,20 +16,20 @@ const HomePage = () => {
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={heroImage}
-            alt="Mount Fuji with cherry blossoms at sunrise"
+            src="/Rain-Kissed Lantern-Lit Alleyway in Historical East Asia.png"
+            alt="Rain-Kissed Lantern-Lit Alleyway in Historical East Asia"
             className="w-full h-full object-cover"
             width="1920"
             height="1080"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
         </div>
 
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight text-white">
             Travel Japan Like a Local
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl mb-6 font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl mb-6 font-light max-w-3xl mx-auto leading-relaxed text-white">
             Personal, flexible journeys with your own expert guide. Discover hidden gems and skip the crowds.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-8 text-sm md:text-base">
@@ -39,20 +38,20 @@ const HomePage = () => {
                 <Star key={i} size={18} fill="currentColor" aria-hidden="true" />
               ))}
             </div>
-            <span>from recent guests · Licensed & insured</span>
+            <span className="text-white">from recent guests · Licensed & insured</span>
           </div>
-          <Link to="/contact" className="focus-ring inline-block">
+          <Link to="/tours" className="focus-ring inline-block">
             <Button size="lg" className="shadow-2xl min-touch">
-              Design Your Dream Trip
+              View Journeys
             </Button>
           </Link>
         </div>
       </section>
 
       {/* Testimonial Carousel */}
-      <section className="py-20 md:py-32 bg-muted/30">
+      <section className="py-12 md:py-16 bg-muted/30">
         <div className="container-editorial">
-          <h2 className="text-3xl md:text-4xl font-serif text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-serif text-center mb-8">
             What Guests Are Saying
           </h2>
           <TestimonialCarousel testimonials={testimonials} />
@@ -60,22 +59,18 @@ const HomePage = () => {
       </section>
 
       {/* Featured Journeys Section */}
-      <section className="py-20 md:py-32">
+      <section className="py-12 md:py-16">
         <div className="container-editorial">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-center mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-center mb-3">
             Featured Journeys
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             Each journey is fully customizable. These are starting points to inspire your perfect trip.
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredTours.map((tour) => (
-              <TourCard key={tour.id} tour={tour} />
-            ))}
-          </div>
+          <TourCardGrid tours={featuredTours} />
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8">
             <Link to="/tours" className="focus-ring inline-block">
               <Button variant="outline" size="lg" className="min-touch">
                 Browse Sample Journeys
@@ -86,11 +81,11 @@ const HomePage = () => {
       </section>
 
       {/* About the Guide - Elevated */}
-      <section className="py-20 md:py-32 bg-muted/30">
+      <section className="py-12 md:py-16 bg-muted/30">
         <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-6">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif mb-4">
                 Your Personal Guide to Authentic Japan
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -146,12 +141,12 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-primary text-primary-foreground">
+      <section className="py-12 md:py-16 bg-primary text-primary-foreground">
         <div className="container-editorial text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif mb-4">
             Ready to Start Planning?
           </h2>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-95 leading-relaxed">
+          <p className="text-base md:text-lg mb-6 max-w-2xl mx-auto opacity-95 leading-relaxed">
             Let's create an itinerary that perfectly matches your interests, pace, and travel style.
           </p>
           <Link to="/contact" className="focus-ring inline-block">
@@ -166,3 +161,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+

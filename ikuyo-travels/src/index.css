@@ -9,13 +9,13 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Ikuyo Travels Design System - Guide-centric, WCAG Compliant */
-    --background: 30 18% 97%;  /* #F7F6F4 - Neutral-100 */
+    --background: 0 0% 100%;  /* #FFFFFF - Pure white */
     --foreground: 0 0% 11%;  /* #1B1B1B - Neutral-900 for H1/H2 */
 
-    --card: 30 18% 97%;
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 11%;
 
-    --popover: 30 18% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 0 0% 11%;
 
     /* Brand colors - Primary CTA */
@@ -23,23 +23,23 @@ All colors MUST be HSL.
     --brand-700: 10 52% 42%;  /* #A24433 - Hover state */
 
     --primary: 10 52% 50%;  /* Brand-600 */
-    --primary-foreground: 30 18% 97%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 11%;  /* Outline buttons */
-    --secondary-foreground: 30 18% 97%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Accent for tags/chips */
     --accent-500: 180 44% 39%;  /* #3C8C8C - Accent */
     --accent: 180 44% 39%;
-    --accent-foreground: 30 18% 97%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 30 18% 94%;
+    --muted: 30 12% 92%;  /* Darker muted background for better contrast */
     --muted-foreground: 210 5% 21%;  /* #33363A - Neutral-700 body text */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 90%;
+    --border: 0 0% 88%;
     --input: 0 0% 90%;
     --ring: 10 52% 50%;
 
@@ -94,18 +94,18 @@ All colors MUST be HSL.
   }
 
   html {
-    font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     scroll-behavior: smooth;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold text-foreground;
-    font-family: 'Noto Serif JP', serif;
+    font-family: 'DM Serif Display', serif;
   }
 }
 
@@ -138,5 +138,15 @@ All colors MUST be HSL.
   .min-touch {
     min-width: var(--min-touch-target);
     min-height: var(--min-touch-target);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

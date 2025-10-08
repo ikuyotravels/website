@@ -1,35 +1,20 @@
 import { Tour } from "@/data/tourData";
-import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Users, DollarSign } from "lucide-react";
+import { getTourCardImage } from "@/lib/tourMedia";
 
 interface TourCardProps {
   tour: Tour;
+  to?: string;
 }
 
-// Map tour IDs to specific Unsplash images
-const getTourImage = (tourId: string): string => {
-  const imageMap: Record<string, string> = {
-    "fuji-day-trip": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&h=600&fit=crop&q=80", // Mt Fuji with pagoda
-    "kansai": "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&h=600&fit=crop&q=80", // Fushimi Inari shrine, Kyoto
-    "kyushu": "https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&h=600&fit=crop&q=80", // Japanese garden/nature
-    "hokkaido-winter": "https://images.unsplash.com/photo-1611348524140-53c9a25263d6?w=800&h=600&fit=crop&q=80", // Hokkaido winter/snow
-    "chubu": "https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=800&h=600&fit=crop&q=80", // Japanese Alps/mountains
-    "tohoku-1": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&q=80", // Autumn foliage
-    "tohoku-2": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&q=80", // Autumn foliage
-    "shikoku": "https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&h=600&fit=crop&q=80", // Temple
-    "okinawa": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&h=600&fit=crop&q=80", // Tropical beach/ocean
-  };
-
-  return imageMap[tourId] || "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&h=600&fit=crop&q=80";
-};
-
-export const TourCard = ({ tour }: TourCardProps) => {
+export const TourCard = ({ tour, to }: TourCardProps) => {
   const navigate = useNavigate();
+  const destination = to ?? `/tours/${tour.id}`;
 
   const handleClick = () => {
-    window.scrollTo(0, 0);
-    navigate("/tours");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate(destination);
   };
 
   return (
@@ -49,7 +34,7 @@ export const TourCard = ({ tour }: TourCardProps) => {
       {/* Image */}
       <div className="aspect-[4/3] overflow-hidden">
         <img
-          src={getTourImage(tour.id)}
+          src={getTourCardImage(tour.id)}
           alt={tour.title}
           loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
@@ -108,3 +93,4 @@ export const TourCard = ({ tour }: TourCardProps) => {
     </article>
   );
 };
+

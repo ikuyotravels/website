@@ -8,7 +8,7 @@ export const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/tours", label: "Tours" },
+    { to: "/tours", label: "Journeys" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
   ];
@@ -22,7 +22,7 @@ export const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border" role="navigation" aria-label="Main navigation">
       <div className="container-editorial">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           <button
             onClick={() => handleNavClick("/")}
             className="flex items-center gap-3 focus-ring rounded"
@@ -33,7 +33,7 @@ export const Navbar = () => {
               alt="Ikuyo Travels Logo"
               className="h-10 w-10"
             />
-            <span className="font-serif text-2xl font-bold text-foreground">
+            <span className="font-serif text-2xl font-extrabold text-foreground">
               Ikuyo Travels
             </span>
           </button>
@@ -44,17 +44,11 @@ export const Navbar = () => {
               <button
                 key={link.to}
                 onClick={() => handleNavClick(link.to)}
-                className="text-foreground hover:text-accent transition-smooth editorial-link focus-ring rounded px-2 py-1"
+                className="text-foreground hover:text-accent transition-smooth editorial-link focus-ring rounded px-2 py-1 font-semibold"
               >
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={() => handleNavClick("/contact")}
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-smooth min-touch focus-ring"
-            >
-              Start Planning
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,12 +75,6 @@ export const Navbar = () => {
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={() => handleNavClick("/contact")}
-              className="w-full bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-smooth min-touch focus-ring"
-            >
-              Start Planning
-            </button>
           </div>
         )}
       </div>

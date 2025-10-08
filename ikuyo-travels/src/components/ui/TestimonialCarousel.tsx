@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "./Button";
 
@@ -27,16 +27,37 @@ export const TestimonialCarousel = ({
   const carouselRef = useRef<HTMLDivElement>(null);
   const liveRegionRef = useRef<HTMLDivElement>(null);
 
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  // Determine items per view based on screen size
+  const getItemsPerView = () => {
+    if (typeof window === 'undefined') return 1;
+    if (window.innerWidth >= 1024) return 3; // lg screens
+    if (window.innerWidth >= 768) return 2;  // md screens
+    return 1; // mobile
   };
 
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
+  const [itemsPerView, setItemsPerView] = useState(getItemsPerView());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerView(getItemsPerView());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, testimonials.length - itemsPerView);
+
+  const goToPrevious = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+  }, [maxIndex]);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  }, [maxIndex]);
 
   const goToSlide = (index: number) => {
-    setCurrentIndex(index);
+    setCurrentIndex(Math.min(index, maxIndex));
   };
 
   useEffect(() => {
@@ -44,7 +65,7 @@ export const TestimonialCarousel = ({
 
     const interval = setInterval(goToNext, autoPlayInterval);
     return () => clearInterval(interval);
-  }, [autoPlay, isPaused, autoPlayInterval, currentIndex]);
+  }, [autoPlay, isPaused, autoPlayInterval, goToNext]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -54,7 +75,7 @@ export const TestimonialCarousel = ({
     }
   };
 
-  const currentTestimonial = testimonials[currentIndex];
+  const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + itemsPerView);
 
   return (
     <div
@@ -75,49 +96,53 @@ export const TestimonialCarousel = ({
         aria-live="polite"
         aria-atomic="true"
       >
-        Testimonial {currentIndex + 1} of {testimonials.length}: {currentTestimonial.quote} - {currentTestimonial.name}, {currentTestimonial.country}
+        Showing testimonials {currentIndex + 1} to {Math.min(currentIndex + itemsPerView, testimonials.length)} of {testimonials.length}
       </div>
 
       {/* Main testimonial display */}
-      <div className="bg-card rounded-lg shadow-md p-8 md:p-12 min-h-[280px] flex flex-col justify-center">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Stars */}
-          {currentTestimonial.rating && (
-            <div className="flex items-center justify-center gap-1 mb-4" aria-label={`${currentTestimonial.rating} out of 5 stars`}>
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={20}
-                  className={i < currentTestimonial.rating! ? "fill-accent text-accent" : "text-muted"}
-                  aria-hidden="true"
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Quote */}
-          <blockquote className="text-lg md:text-xl lg:text-2xl text-foreground mb-6 italic leading-relaxed">
-            "{currentTestimonial.quote}"
-          </blockquote>
-
-          {/* Attribution */}
-          <div className="flex flex-col items-center gap-2">
-            <cite className="not-italic font-semibold text-foreground">
-              {currentTestimonial.name}
-            </cite>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>{currentTestimonial.country}</span>
-              {currentTestimonial.tripType && (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium">
-                    {currentTestimonial.tripType}
-                  </span>
-                </>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {visibleTestimonials.map((testimonial, idx) => (
+          <div key={testimonial.id} className="bg-card rounded-lg shadow-md p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+            <div className="text-center">
+              {/* Stars */}
+              {testimonial.rating && (
+                <div className="flex items-center justify-center gap-1 mb-4" aria-label={`${testimonial.rating} out of 5 stars`}>
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={18}
+                      className={i < testimonial.rating! ? "fill-accent text-accent" : "text-muted"}
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
               )}
+
+              {/* Quote */}
+              <blockquote className="text-base md:text-lg text-foreground mb-4 italic leading-relaxed">
+                "{testimonial.quote}"
+              </blockquote>
+
+              {/* Attribution */}
+              <div className="flex flex-col items-center gap-2">
+                <cite className="not-italic font-semibold text-foreground">
+                  {testimonial.name}
+                </cite>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span>{testimonial.country}</span>
+                  {testimonial.tripType && (
+                    <>
+                      <span aria-hidden="true">·</span>
+                      <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium">
+                        {testimonial.tripType}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* Navigation buttons */}
@@ -126,19 +151,20 @@ export const TestimonialCarousel = ({
           variant="outline"
           size="icon"
           onClick={goToPrevious}
-          aria-label="Previous testimonial"
+          aria-label="Previous testimonials"
           className="focus-ring"
+          disabled={currentIndex === 0}
         >
           <ChevronLeft className="h-5 w-5" />
         </Button>
 
         {/* Dot pagination */}
         <div className="flex gap-2" role="tablist" aria-label="Testimonial navigation">
-          {testimonials.map((_, index) => (
+          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <button
               key={index}
               role="tab"
-              aria-label={`Go to testimonial ${index + 1}`}
+              aria-label={`Go to testimonials ${index + 1}`}
               aria-selected={currentIndex === index}
               aria-controls={`testimonial-${index}`}
               onClick={() => goToSlide(index)}
@@ -155,8 +181,9 @@ export const TestimonialCarousel = ({
           variant="outline"
           size="icon"
           onClick={goToNext}
-          aria-label="Next testimonial"
+          aria-label="Next testimonials"
           className="focus-ring"
+          disabled={currentIndex >= maxIndex}
         >
           <ChevronRight className="h-5 w-5" />
         </Button>
@@ -164,7 +191,7 @@ export const TestimonialCarousel = ({
 
       {/* Progress indicator */}
       <div className="text-center mt-4 text-sm text-muted-foreground">
-        {currentIndex + 1} / {testimonials.length}
+        {currentIndex + 1} - {Math.min(currentIndex + itemsPerView, testimonials.length)} of {testimonials.length}
       </div>
     </div>
   );
