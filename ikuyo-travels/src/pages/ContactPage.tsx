@@ -98,7 +98,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen">
       <PageHero
-        className="bg-muted/40"
+        backgroundImage="/serene-mount-fuji-reflection.png"
         title="Let's Create Your Perfect Journey"
         description="Share your travel dreams with us, and we'll craft a personalized itinerary that brings them to life."
       />

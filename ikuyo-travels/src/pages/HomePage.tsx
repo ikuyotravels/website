@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/Rain-Kissed Lantern-Lit Alleyway in Historical East Asia.png"
@@ -38,7 +38,6 @@ const HomePage = () => {
                 <Star key={i} size={18} fill="currentColor" aria-hidden="true" />
               ))}
             </div>
-            <span className="text-white">from recent guests · Licensed & insured</span>
           </div>
           <Link to="/tours" className="focus-ring inline-block">
             <Button size="lg" className="shadow-2xl min-touch">
@@ -98,13 +97,6 @@ const HomePage = () => {
                 <p>
                   With over 10 years of exploring every corner of Japan, I know exactly how to create journeys that balance must-see landmarks with unexpected discoveries. My goal is to make your trip feel effortless and authentic.
                 </p>
-              </div>
-              <div className="mt-8">
-                <Link to="/about" className="focus-ring inline-block">
-                  <Button variant="secondary" size="lg" className="min-touch">
-                    More About My Approach
-                  </Button>
-                </Link>
               </div>
             </div>
 

@@ -29,7 +29,7 @@ const FILTER_OPTIONS: FilterOption[] = [
 ];
 
 const ToursPage = () => {
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   const availableFilters = useMemo(
     () =>
@@ -40,40 +40,35 @@ const ToursPage = () => {
   );
 
   const filteredTours = useMemo(() => {
-    if (activeFilters.length === 0) {
+    if (!activeFilter) {
       return tours;
     }
 
     return tours.filter(tour => {
       const tourFilters = tour.filters ?? [];
-      return activeFilters.every(filterKey => tourFilters.includes(filterKey));
+      return tourFilters.includes(activeFilter);
     });
-  }, [activeFilters]);
+  }, [activeFilter]);
 
   const toggleFilter = (filterKey: string) => {
-    setActiveFilters(prev =>
-      prev.includes(filterKey)
-        ? prev.filter(key => key !== filterKey)
-        : [...prev, filterKey]
-    );
+    setActiveFilter(prev => (prev === filterKey ? null : filterKey));
   };
 
-  const clearFilters = () => setActiveFilters([]);
+  const clearFilter = () => setActiveFilter(null);
 
   return (
     <div className="min-h-screen">
       <PageHero
-        className="bg-muted/40"
-        eyebrow="Sample Journeys"
+        backgroundImage="/ryokan.avif"
         title="Find inspiration for your custom trip to Japan"
         description="Every itinerary you see here is a starting point. Click through to explore the day-by-day flow, then reach out and we will tailor the experience around your interests, pace, and must-see list."
       />
 
-      <section className="py-8">
+      <section className="pt-8 pb-4">
         <div className="container-editorial">
-          <div className="flex overflow-x-auto space-x-3 pb-4">
+          <div className="flex overflow-x-auto space-x-3 pb-4 scrollbar-hide">
             {availableFilters.map(option => {
-              const isActive = activeFilters.includes(option.key);
+              const isActive = activeFilter === option.key;
               return (
                 <button
                   key={option.key}
@@ -91,10 +86,10 @@ const ToursPage = () => {
               );
             })}
 
-            {activeFilters.length > 0 && (
+            {activeFilter && (
               <button
                 type="button"
-                onClick={clearFilters}
+                onClick={clearFilter}
                 className="px-3 py-2 text-sm font-medium text-accent hover:text-accent/80 transition-smooth"
               >
                 Clear
@@ -104,7 +99,7 @@ const ToursPage = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
+      <section className="pt-4 pb-12 md:pb-16">
         <div className="container-editorial">
           {filteredTours.length > 0 ? (
             <TourCardGrid tours={filteredTours} className="lg:grid-cols-3" />

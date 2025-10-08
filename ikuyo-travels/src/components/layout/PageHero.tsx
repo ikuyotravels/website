@@ -13,6 +13,7 @@ interface PageHeroProps {
   titleClassName?: string;
   descriptionClassName?: string;
   children?: ReactNode;
+  backgroundImage?: string;
 }
 
 export const PageHero = ({
@@ -26,14 +27,28 @@ export const PageHero = ({
   titleClassName,
   descriptionClassName,
   children,
+  backgroundImage,
 }: PageHeroProps) => {
   const isCentered = align === "center";
 
+  const sectionStyle = backgroundImage
+    ? {
+        backgroundImage: `url(${backgroundImage})`,
+      }
+    : {};
+
   return (
-    <section className={cn("py-14 md:py-20", className)}>
+    <section
+      className={cn(
+        "py-14 md:py-20 relative bg-cover bg-center",
+        className
+      )}
+      style={sectionStyle}
+    >
+      {backgroundImage && <div className="absolute inset-0 bg-black/50" />}
       <div
         className={cn(
-          "container-editorial",
+          "container-editorial relative",
           isCentered ? "text-center" : "text-center md:text-left",
           containerClassName
         )}
@@ -42,7 +57,8 @@ export const PageHero = ({
           {eyebrow && (
             <p
               className={cn(
-                "text-sm uppercase tracking-widest text-primary font-semibold mb-4",
+                "text-sm uppercase tracking-widest font-semibold mb-4",
+                backgroundImage ? "text-white/80" : "text-primary",
                 eyebrowClassName
               )}
             >
@@ -53,6 +69,7 @@ export const PageHero = ({
           <h1
             className={cn(
               "text-4xl md:text-5xl lg:text-6xl font-serif mb-6",
+              backgroundImage ? "text-white" : "",
               titleClassName
             )}
           >
@@ -62,7 +79,8 @@ export const PageHero = ({
           {description && (
             <p
               className={cn(
-                "text-muted-foreground text-base md:text-lg leading-relaxed",
+                "text-base md:text-lg leading-relaxed",
+                backgroundImage ? "text-white/90" : "text-muted-foreground",
                 descriptionClassName
               )}
             >

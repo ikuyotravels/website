@@ -188,11 +188,6 @@ export const TestimonialCarousel = ({
           <ChevronRight className="h-5 w-5" />
         </Button>
       </div>
-
-      {/* Progress indicator */}
-      <div className="text-center mt-4 text-sm text-muted-foreground">
-        {currentIndex + 1} - {Math.min(currentIndex + itemsPerView, testimonials.length)} of {testimonials.length}
-      </div>
     </div>
   );
 };
