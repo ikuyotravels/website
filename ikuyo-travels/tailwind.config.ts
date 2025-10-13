@@ -15,8 +15,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Figtree', 'sans-serif'],
-        serif: ['Noto Serif JP', 'serif'],
+        sans: ['Lexend Deca', 'sans-serif'],
+        serif: ['DM Serif Display', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

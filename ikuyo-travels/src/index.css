@@ -8,43 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Ikuyo Travels Design System - Warm, Editorial, Authentic */
-    --background: 28 25% 95%;  /* #F4F1ED - Warm beige */
-    --foreground: 186 18% 20%;  /* #2A3A3D - Deep teal */
+    /* Ikuyo Travels Design System - Guide-centric, WCAG Compliant */
+    --background: 0 0% 100%;  /* #FFFFFF - Pure white */
+    --foreground: 0 0% 11%;  /* #1B1B1B - Neutral-900 for H1/H2 */
 
-    --card: 28 25% 97%;
-    --card-foreground: 186 18% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 11%;
 
-    --popover: 28 25% 97%;
-    --popover-foreground: 186 18% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 11%;
 
-    --primary: 186 18% 20%;  /* Deep teal for primary elements */
-    --primary-foreground: 28 25% 95%;
+    /* Brand colors - Primary CTA */
+    --brand-600: 10 52% 50%;  /* #C0533D - Primary brand */
+    --brand-700: 10 52% 42%;  /* #A24433 - Hover state */
 
-    --secondary: 220 9% 62%;  /* #9CA3AF - Soft grey */
-    --secondary-foreground: 186 18% 20%;
+    --primary: 10 52% 50%;  /* Brand-600 */
+    --primary-foreground: 0 0% 100%;
 
-    --muted: 28 15% 90%;
-    --muted-foreground: 220 9% 46%;  /* #6B7280 - Medium grey */
+    --secondary: 0 0% 11%;  /* Outline buttons */
+    --secondary-foreground: 0 0% 100%;
 
-    --accent: 13 49% 51%;  /* #C46243 - Terracotta */
-    --accent-foreground: 28 25% 95%;
+    /* Accent for tags/chips */
+    --accent-500: 180 44% 39%;  /* #3C8C8C - Accent */
+    --accent: 180 44% 39%;
+    --accent-foreground: 0 0% 100%;
 
-    --accent-hover: 13 49% 45%;  /* #A9543A - Darker terracotta */
+    --muted: 30 12% 92%;  /* Darker muted background for better contrast */
+    --muted-foreground: 210 5% 21%;  /* #33363A - Neutral-700 body text */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 28 20% 85%;
-    --input: 28 20% 90%;
-    --ring: 13 49% 51%;
+    --border: 0 0% 88%;
+    --input: 0 0% 90%;
+    --ring: 10 52% 50%;
 
     --radius: 0.5rem;
 
     /* Custom design tokens */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-soft: 0 2px 8px rgba(42, 58, 61, 0.08);
-    --shadow-medium: 0 4px 16px rgba(42, 58, 61, 0.12);
+    --shadow-soft: 0 2px 8px rgba(27, 27, 27, 0.08);
+    --shadow-medium: 0 4px 16px rgba(27, 27, 27, 0.12);
+
+    /* Minimum touch target size */
+    --min-touch-target: 44px;
   }
 
   .dark {
@@ -86,17 +93,19 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-family: 'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-foreground;
-  }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
+    @apply font-bold text-foreground;
+    font-family: 'DM Serif Display', serif;
   }
 }
 
@@ -114,5 +123,30 @@ All colors MUST be HSL.
   /* Container for editorial layout */
   .container-editorial {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Focus states - WCAG compliant */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .focus-ring-accent {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  }
+
+  /* Minimum touch target */
+  .min-touch {
+    min-width: var(--min-touch-target);
+    min-height: var(--min-touch-target);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
